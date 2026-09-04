@@ -1,5 +1,6 @@
 import { prisma } from "../../data/postgres";
-import { CreateTodoDto, TodoDatasoruce, TodoEntity, UpdateTodoDto } from "../../domain";
+import { CreateTodoDto, CustomError, TodoDatasoruce, TodoEntity, UpdateTodoDto } from "../../domain";
+
 
 export class TodoDatasoruceImpl implements TodoDatasoruce {
 
@@ -22,7 +23,7 @@ export class TodoDatasoruceImpl implements TodoDatasoruce {
             where: { id }
         });
 
-        if ( !todo ) throw `Todo with id ${ id } not found`;
+        if ( !todo ) throw new CustomError(`Todo with id ${ id } not found`, 404);
         return TodoEntity.fromObject(todo);
     }
 
