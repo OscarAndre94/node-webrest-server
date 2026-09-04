@@ -5,6 +5,10 @@ keys/
 
 .env
 
+.env.template
+
+.env.test
+
 /postgres
 /src/generated/prisma
 
